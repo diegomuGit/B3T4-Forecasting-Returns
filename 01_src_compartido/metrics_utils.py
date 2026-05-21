@@ -27,6 +27,14 @@ BASELINE_FILES = {
     'trivial':      'baseline_trivial_resultados.csv',
     'lineal':       'baseline_lineal_resultados.csv',
 }
+# Variantes en escala de investigación (frac-diff + split temporal con embargo).
+# Se consultan automáticamente desde los notebooks `inv_*` (auto-detect por
+# `nombre_modelo.startswith('inv_')` en `plot_curva` / `resumen_vs_baselines`).
+BASELINE_FILES_INV = {
+    'buy_and_hold': 'baseline_buy_and_hold_inv_resultados.csv',
+    'trivial':      'baseline_trivial_inv_resultados.csv',
+    'lineal':       'baseline_lineal_inv_resultados.csv',
+}
 BASELINE_COLORS = {
     'buy_and_hold': '#1f77b4',
     'trivial':      '#2ca02c',
@@ -87,7 +95,8 @@ def plot_curva(history, nombre_modelo, v_in, v_out, save=True,
                label=f'Best epoch ({best_epoch})')
 
     if mostrar_baselines:
-        df_b = cargar_baselines_combo(v_in, v_out)
+        scope = 'inv' if str(nombre_modelo).startswith('inv_') else 'comp'
+        df_b = cargar_baselines_combo(v_in, v_out, scope=scope)
         for _, row in df_b.iterrows():
             key   = row['baseline']
             color = BASELINE_COLORS.get(key, 'gray')
@@ -346,17 +355,29 @@ def cargar_best_modelo(nombre_modelo, v_in, v_out):
 
 # ── baselines: lookup por combo ──────────────────────────────────────────────
 
-def cargar_baselines_combo(v_in, v_out):
+def cargar_baselines_combo(v_in, v_out, scope='comp'):
     """
     Devuelve un DataFrame con 1 fila por baseline disponible (buy_and_hold,
     trivial, lineal) para el (v_in, v_out) dado. Columnas:
         baseline, n_params, mae_train, mae_val, mae_test
     Si un CSV de baseline no existe o no tiene la combinación, se omite
     silenciosamente. Devuelve DataFrame vacío si no hay ninguno.
+
+    Parámetros
+    ----------
+    scope : 'comp' | 'inv'
+        'comp' (default): baselines de competición (log-retornos, split aleatorio).
+        'inv'           : baselines de investigación (frac-diff, split temporal).
     """
+    if scope == 'inv':
+        files = BASELINE_FILES_INV
+    elif scope == 'comp':
+        files = BASELINE_FILES
+    else:
+        raise ValueError(f"scope debe ser 'comp' o 'inv'; recibido: {scope!r}")
     base_dir = Path(BASE_DRIVE) / '08_results' / 'tablas'
     filas    = []
-    for key, fname in BASELINE_FILES.items():
+    for key, fname in files.items():
         ruta = base_dir / fname
         if not ruta.exists():
             continue
@@ -389,7 +410,8 @@ def resumen_vs_baselines(maes, v_in, v_out, nombre_modelo='modelo',
     n_params: nº de parámetros del modelo (opcional). Si se pasa, se muestra
               en la fila del modelo; si no, se deja en blanco ('—').
     """
-    df_b = cargar_baselines_combo(v_in, v_out)
+    scope = 'inv' if str(nombre_modelo).startswith('inv_') else 'comp'
+    df_b = cargar_baselines_combo(v_in, v_out, scope=scope)
     fila_modelo = pd.DataFrame([{
         'baseline':  nombre_modelo,
         'n_params':  float(n_params) if n_params is not None else np.nan,
