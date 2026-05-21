@@ -1,0 +1,33 @@
+# Claude Code / agentes
+.claude/
+
+# Carpeta privada de trabajo
+tools/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+.env
+
+# IDE / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Datos descargados (yfinance se baja por código, no se commitea)
+*.parquet
+00_datos/*.csv

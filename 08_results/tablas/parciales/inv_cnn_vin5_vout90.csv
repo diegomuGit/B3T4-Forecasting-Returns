@@ -1,0 +1,2 @@
+modelo,v_in,v_out,n_params,mae_train,mae_val,mae_test
+inv_cnn,5,90,14567,0.01877022348344326,0.021004851907491684,0.03135557100176811

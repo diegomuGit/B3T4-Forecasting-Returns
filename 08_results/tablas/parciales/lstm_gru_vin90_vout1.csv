@@ -1,0 +1,2 @@
+modelo,v_in,v_out,n_params,mae_train,mae_val,mae_test
+lstm_gru,90,1,120727,0.01155870035290718,0.011873756535351276,0.011706890538334846

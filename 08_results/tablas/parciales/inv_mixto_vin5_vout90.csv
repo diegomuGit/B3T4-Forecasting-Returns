@@ -1,0 +1,2 @@
+modelo,v_in,v_out,n_params,mae_train,mae_val,mae_test
+inv_mixto,5,90,60055,0.03538341447710991,0.05366229638457298,0.06881695985794067

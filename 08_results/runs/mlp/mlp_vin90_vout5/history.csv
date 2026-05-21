@@ -1,0 +1,2 @@
+timestamp,mae_train,mae_val,mae_test,overfit_ratio,best_epoch,epochs_run,n_params,duration_seconds,mejora
+2026-05-20T08:04:36,0.005371148232370615,0.005370737053453922,0.005349040497094393,0.9999,1997,2998,566039,1565.0,True

@@ -1,0 +1,166 @@
+{
+  "modelo": "inv_mlp",
+  "v_in": 10,
+  "v_out": 90,
+  "mae_train": 0.015429024584591389,
+  "mae_val": 0.01651400327682495,
+  "mae_test": 0.021029088646173477,
+  "n_params": 5313,
+  "best_epoch": 16,
+  "epochs_run": 517,
+  "duration_seconds": 220.0,
+  "hparams": {
+    "arch": {
+      "name": "sequential",
+      "trainable": true,
+      "dtype": {
+        "module": "keras",
+        "class_name": "DTypePolicy",
+        "config": {
+          "name": "float32"
+        },
+        "registered_name": null
+      },
+      "layers": [
+        {
+          "module": "keras.layers",
+          "class_name": "InputLayer",
+          "config": {
+            "batch_shape": [
+              null,
+              10,
+              23
+            ],
+            "dtype": "float32",
+            "sparse": false,
+            "ragged": false,
+            "name": "input_layer",
+            "optional": false
+          },
+          "registered_name": null
+        },
+        {
+          "module": "keras.layers",
+          "class_name": "Flatten",
+          "config": {
+            "name": "flatten",
+            "trainable": true,
+            "dtype": {
+              "module": "keras",
+              "class_name": "DTypePolicy",
+              "config": {
+                "name": "float32"
+              },
+              "registered_name": null
+            },
+            "data_format": "channels_last"
+          },
+          "registered_name": null,
+          "build_config": {
+            "input_shape": [
+              null,
+              10,
+              23
+            ]
+          }
+        },
+        {
+          "module": "keras.layers",
+          "class_name": "Dropout",
+          "config": {
+            "name": "dropout",
+            "trainable": true,
+            "dtype": {
+              "module": "keras",
+              "class_name": "DTypePolicy",
+              "config": {
+                "name": "float32"
+              },
+              "registered_name": null
+            },
+            "rate": 0.4,
+            "seed": null,
+            "noise_shape": null
+          },
+          "registered_name": null
+        },
+        {
+          "module": "keras.layers",
+          "class_name": "Dense",
+          "config": {
+            "name": "dense",
+            "trainable": true,
+            "dtype": {
+              "module": "keras",
+              "class_name": "DTypePolicy",
+              "config": {
+                "name": "float32"
+              },
+              "registered_name": null
+            },
+            "units": 23,
+            "activation": "linear",
+            "use_bias": true,
+            "kernel_initializer": {
+              "module": "keras.initializers",
+              "class_name": "GlorotUniform",
+              "config": {
+                "seed": null
+              },
+              "registered_name": null
+            },
+            "bias_initializer": {
+              "module": "keras.initializers",
+              "class_name": "Zeros",
+              "config": {},
+              "registered_name": null
+            },
+            "kernel_regularizer": null,
+            "bias_regularizer": null,
+            "kernel_constraint": null,
+            "bias_constraint": null,
+            "quantization_config": null
+          },
+          "registered_name": null,
+          "build_config": {
+            "input_shape": [
+              null,
+              230
+            ]
+          }
+        }
+      ],
+      "build_input_shape": [
+        null,
+        10,
+        23
+      ]
+    },
+    "optimizer": {
+      "name": "adam",
+      "learning_rate": 0.00016000001050997525,
+      "weight_decay": null,
+      "clipnorm": null,
+      "global_clipnorm": null,
+      "clipvalue": null,
+      "use_ema": false,
+      "ema_momentum": 0.99,
+      "ema_overwrite_frequency": null,
+      "loss_scale_factor": null,
+      "gradient_accumulation_steps": null,
+      "beta_1": 0.9,
+      "beta_2": 0.999,
+      "epsilon": 1e-07,
+      "amsgrad": false
+    },
+    "extra": {
+      "epochs": 5000,
+      "batch_size": 100,
+      "patience_early_stopping": 500,
+      "scaler": "standard",
+      "weights_checkpoint": "/content/drive/MyDrive/Taller4_DL_MIAX/08_results/checkpoints/inv_mlp_vin10_vout90_best.weights.h5"
+    }
+  },
+  "timestamp": "2026-05-20T15:21:00",
+  "improved_over_mae_val": null
+}

@@ -1,0 +1,3 @@
+window,rebal_date,end_date,days,ticker,weight_eq,weight_prop,exp_return,actual_return,direction_correct
+1,2025-05-14,2025-09-23,90,MRK,0.2,1.0,0.045774029498420125,0.11009048134681798,1
+3,2026-02-02,2026-05-20,75,HPQ,0.2,1.0,0.2526564893803023,0.08086126461793763,1
